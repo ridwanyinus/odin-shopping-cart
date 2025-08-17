@@ -1,4 +1,3 @@
-import Versace from "/versace.svg";
 import styles from "./App.module.scss";
 import Button from "./components/Button/LinkButton";
 
