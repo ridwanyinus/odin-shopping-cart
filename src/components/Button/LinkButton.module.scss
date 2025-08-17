@@ -1,0 +1,21 @@
+.button {
+  background: $black;
+  color: $white;
+  padding: 16px 54px;
+  text-align: center;
+  border: none;
+  border-radius: 62px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+  margin-block-start: 12px;
+
+  @include media('>=tablet') {
+    width: 510px;
+  }
+
+  @include media('>=desktop') {
+    width: 310px;
+  }
+}

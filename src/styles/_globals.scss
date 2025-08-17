@@ -1,0 +1,23 @@
+@use 'variables' as *;
+@use 'functions' as *;
+
+html {
+  overscroll-behavior: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
+}
+
+body {
+  font-family: $satoshi;
+  font-size: 1rem;
+  min-height: 100vh;
+  line-height: 1.5;
+  background-color: $white;
+  color: $black;
+}
+
+.container {
+  width: min(100% - rem(24), rem(1240));
+  margin-inline: auto;
+}
