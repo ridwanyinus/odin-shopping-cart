@@ -36,8 +36,12 @@ export default function Header() {
 
 			{/* Laptop Nav */}
 			<nav className={styles.header__nav} aria-label="Desktop navigation">
-				<Link to="/demo/tanstack-query">Shop</Link>
-				<Link to=".">Categories</Link>
+				<ul>
+					<li>
+						<Link to="/demo/tanstack-query">Shop</Link>
+						<Link to=".">Categories</Link>
+					</li>
+				</ul>
 			</nav>
 
 			{/* Mobile Nav */}
@@ -49,8 +53,12 @@ export default function Header() {
 						aria-label="Mobile navigation"
 						aria-hidden={!isMenuOpen}
 					>
-						<Link to="/demo/tanstack-query">Shop</Link>
-						<Link to=".">Categories</Link>
+						<ul>
+							<li>
+								<Link to="/demo/tanstack-query">Shop</Link>
+								<Link to=".">Categories</Link>
+							</li>
+						</ul>
 					</nav>
 				</div>
 			)}

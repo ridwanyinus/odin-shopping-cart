@@ -4,7 +4,7 @@
   padding-block-start: 1.5rem;
   overflow: hidden;
   position: relative;
-  max-height: 594px;
+  // max-height: 594px;
 
   @include media('>=tablet') {
     max-height: 994px;
