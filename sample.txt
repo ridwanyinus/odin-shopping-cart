@@ -1,9 +1,7 @@
-/* Rectangle 3 */
-
-position: absolute;
-width: 1440px;
-height: 122px;
-left: 0px;
-top: 797px;
-
-background: #000000;
+font-family: Satoshi;
+font-weight: 400;
+font-style: Regular;
+font-size: 12px;
+leading-trim: NONE;
+line-height: 100%;
+letter-spacing: 0%;

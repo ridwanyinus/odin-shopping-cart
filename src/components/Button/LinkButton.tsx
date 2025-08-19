@@ -3,11 +3,12 @@ import styles from "./LinkButton.module.scss";
 
 interface LinkButtonProps {
 	text: string;
+	url: string | "/";
 }
 
-const Button = ({ text }: LinkButtonProps) => {
+const Button = ({ text, url }: LinkButtonProps) => {
 	return (
-		<Link to="/" className={styles.button}>
+		<Link to={url} className={styles.button}>
 			{text}
 		</Link>
 	);

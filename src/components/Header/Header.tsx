@@ -38,7 +38,7 @@ export default function Header() {
 			<nav className={styles.header__nav} aria-label="Desktop navigation">
 				<ul>
 					<li>
-						<Link to="/demo/tanstack-query">Shop</Link>
+						<Link to="/shop">Shop</Link>
 						<Link to=".">Categories</Link>
 					</li>
 				</ul>
@@ -55,7 +55,7 @@ export default function Header() {
 					>
 						<ul>
 							<li>
-								<Link to="/demo/tanstack-query">Shop</Link>
+								<Link to="/shop">Shop</Link>
 								<Link to=".">Categories</Link>
 							</li>
 						</ul>

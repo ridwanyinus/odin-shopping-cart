@@ -1,7 +1,6 @@
 .hero {
   background-color: $off-white;
   margin-block-start: 1.5rem;
-  padding-block-start: 1.5rem;
   overflow: hidden;
   position: relative;
 
@@ -11,7 +10,7 @@
 
   @include media('>=laptop') {
     margin-block-start: 2rem;
-    max-height: 785px;
+    max-height: 685px;
   }
 
   &__container {
@@ -188,7 +187,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    gap: 12px;
+    // gap: 12px;
 
     @include media('<=tablet') {
       padding-block: 1rem;

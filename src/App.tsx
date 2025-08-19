@@ -1,5 +1,5 @@
 import styles from "./App.module.scss";
-import Button from "./components/Button/LinkButton";
+import LinkButton from "./components/Button/LinkButton";
 
 const partnersImgUrl = [
 	"/versace.svg",
@@ -22,7 +22,7 @@ const App = () => {
 						designed to bring out your individuality and cater to your sense of
 						style.
 					</span>
-					<Button text={"Shop Now"} />
+					<LinkButton text={"Shop Now"} url="/shop" />
 					<div className={styles.hero__statsWrapper}>
 						<div className={styles.hero__stats}>
 							<p>200+</p>

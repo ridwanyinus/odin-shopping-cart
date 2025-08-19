@@ -5,10 +5,10 @@ import {
 	createRoute,
 	createRouter,
 } from "@tanstack/react-router";
-// import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import TanStackQueryDemo from "./routes/demo.tanstack-query.tsx";
+import Shop from "./routes/shop/index.tsx";
 
 import Header from "./components/Header/Header.tsx";
 
@@ -24,7 +24,7 @@ const rootRoute = createRootRoute({
 		<>
 			<Header />
 			<Outlet />
-			{/* <TanStackRouterDevtools /> */}
+			<TanStackRouterDevtools />
 		</>
 	),
 });
@@ -35,10 +35,7 @@ const indexRoute = createRoute({
 	component: App,
 });
 
-const routeTree = rootRoute.addChildren([
-	indexRoute,
-	TanStackQueryDemo(rootRoute),
-]);
+const routeTree = rootRoute.addChildren([indexRoute, Shop(rootRoute)]);
 
 const TanStackQueryProviderContext = TanStackQueryProvider.getContext();
 const router = createRouter({

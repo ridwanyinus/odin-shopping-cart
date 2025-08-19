@@ -29,7 +29,11 @@ p {
 
 ul {
   margin: 0;
+  padding: 0;
+  list-style: none;
+  display: contents;
 }
+
 b,
 strong {
   font-weight: bolder;
