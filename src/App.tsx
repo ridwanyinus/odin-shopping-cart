@@ -1,5 +1,5 @@
 import styles from "./App.module.scss";
-import LinkButton from "./components/Button/LinkButton";
+import LinkButton from "./components/ui/Button/LinkButton";
 
 const partnersImgUrl = [
 	"/versace.svg",

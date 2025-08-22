@@ -1,16 +1,25 @@
 .shop {
-  margin-block: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  justify-content: center;
-  align-items: center;
+  h2 {
+    font-family: $integral;
+    text-align: center;
+    margin-block: 1rem;
+  }
+  &__grid {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(rem(200), 1fr));
+      gap: 32px;
+    }
 
-  gap: 24px;
+    li {
+      display: flex;
+      justify-content: center;
+    }
 
-  ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    a {
+      &:focus-within img {
+        transform: scale(1.02);
+      }
+    }
   }
 }

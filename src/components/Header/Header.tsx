@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import HamburgerIcon from "../Hamburger/Hambuger";
+import HamburgerIcon from "../ui/Hamburger/Hambuger";
 // Todo: add accesibility styles (focus, active etc..) to all focusable elements
 import styles from "./Header.module.scss";
 
