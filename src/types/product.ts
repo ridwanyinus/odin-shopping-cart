@@ -20,10 +20,10 @@ export interface Product {
 }
 
 export interface ProductCardProps {
-		id: string;
-		imgUrl: string;
-		title: string;
-		reviews: number[];
-		price: number;
-		discountPercentage: number;
-	}
+	id: string;
+	imgUrl: string;
+	title: string;
+	reviews: number[];
+	price: number;
+	discountPercentage: number;
+}

@@ -3,6 +3,7 @@ import {
 	Outlet,
 	RouterProvider,
 	createRootRoute,
+	createRootRouteWithContext,
 	createRoute,
 	createRouter,
 } from "@tanstack/react-router";
@@ -17,13 +18,14 @@ import Shop from "./routes/shop/index.tsx";
 import Header from "./components/Header/Header.tsx";
 
 import * as TanStackQueryProvider from "./integrations/tanstack-query/root-provider.tsx";
+import type { MyRouterContext  } from "./integrations/tanstack-query/root-provider.tsx";
 
 import "./styles/index.scss";
 import reportWebVitals from "./reportWebVitals.ts";
 
 import App from "./App.tsx";
 
-const rootRoute = createRootRoute({
+const rootRoute = createRootRouteWithContext<MyRouterContext>()({
 	component: () => {
 		return (
 			<div>
@@ -46,28 +48,26 @@ const indexRoute = createRoute({
 const shopRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: "/shop",
-	context: () => ({
+	beforeLoad: () => ({
 		getTitle: () => "Shop",
 	}),
 	component: Shop,
 });
 
-
-
 const productRoute = createRoute({
-   getParentRoute: () => rootRoute,
-   path: "/shop/product/$id",
-   loader: async ({ params }) => {
-      const product = await api.getProductById(Number.parseInt(params.id));
-      return { product };
-   },
-   beforeLoad: async ({ params }) => {
-      const product = await api.getProductById(Number.parseInt(params.id));
-      return {
-         getTitle: () => product.title,
-      };
-   },
-   component: ProductDetails,
+	getParentRoute: () => rootRoute,
+	path: "/shop/product/$id",
+	loader: async ({ params }) => {
+		const product = await api.getProductById(Number.parseInt(params.id));
+		return { product };
+	},
+	beforeLoad: async ({ params }) => {
+		const product = await api.getProductById(Number.parseInt(params.id));
+		return {
+			getTitle: () => product.title,
+		};
+	},
+	component: ProductDetails,
 });
 
 const routeTree = rootRoute.addChildren([indexRoute, shopRoute, productRoute]);
@@ -87,6 +87,7 @@ const router = createRouter({
 declare module "@tanstack/react-router" {
 	interface Register {
 		router: typeof router;
+		routerContext: MyRouterContext;
 	}
 }
 

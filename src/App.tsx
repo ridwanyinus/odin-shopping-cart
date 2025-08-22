@@ -68,8 +68,8 @@ const App = () => {
 			</div>
 			<div className={styles.hero__partnersWrapper}>
 				<div className={styles.hero__partners}>
-					{partnersImgUrl.map((img, idx) => (
-						<img key={idx} src={img} alt="" />
+					{partnersImgUrl.map((img) => (
+						<img key={img} src={img} alt="" />
 					))}
 				</div>
 			</div>
