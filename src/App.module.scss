@@ -73,6 +73,18 @@
     }
   }
 
+  &__linkBtn {
+    margin-block-start: 12px;
+
+    @include media('>=tablet') {
+      width: 510px;
+    }
+
+    @include media('>=desktop') {
+      width: 310px;
+    }
+  }
+
   &__statsWrapper {
     display: flex;
     justify-content: center;

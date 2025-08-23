@@ -1,5 +1,6 @@
+import { Link } from "@tanstack/react-router";
 import styles from "./App.module.scss";
-import LinkButton from "./components/ui/Button/LinkButton";
+// import LinkButton from "./components/ui/Button/LinkButton"; //Todo: delete the component
 
 const partnersImgUrl = [
 	"/versace.svg",
@@ -22,7 +23,13 @@ const App = () => {
 						designed to bring out your individuality and cater to your sense of
 						style.
 					</span>
-					<LinkButton text={"Shop Now"} url="/shop" />
+					{/* <LinkButton text={"Shop Now"} url="/shop" /> */}
+					<Link
+						to="/shop"
+						className={`button--primary ${styles.hero__linkBtn}`}
+					>
+						Shop Now
+					</Link>
 					<div className={styles.hero__statsWrapper}>
 						<div className={styles.hero__stats}>
 							<p>200+</p>

@@ -1,7 +1,9 @@
 import type { ProductCardProps } from "@/types/product";
-import emptyStar from "/codicon--star-empty.svg";
-import fullStar from "/codicon--star-full.svg";
-import halfStar from "/codicon--star-half.svg";
+import {
+	calculateAverageRating,
+	calculateDiscountedPrice,
+	generateStarImagePaths,
+} from "@/utils";
 import styles from "./Product.module.scss";
 
 const ProductCard = ({
@@ -11,24 +13,9 @@ const ProductCard = ({
 	price,
 	discountPercentage,
 }: ProductCardProps) => {
-	const avgRating =
-		reviews.length > 0
-			? reviews.reduce((sum, r) => sum + r, 0) / reviews.length
-			: 0;
-
-	const discountedPrice = price - (price * discountPercentage) / 100;
-
-	const calcStars = () => {
-		const fullStars = Math.floor(avgRating);
-		const hasHalfStar = avgRating % 1 >= 0.5;
-		const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-		const stars = [
-			...Array(fullStars).fill(fullStar),
-			...(hasHalfStar ? [halfStar] : []),
-			...Array(emptyStars).fill(emptyStar),
-		];
-		return stars.map((star) => <img key={star} src={star} alt="star" />);
-	};
+	const avgRating = calculateAverageRating(reviews);
+	const discountedPrice = calculateDiscountedPrice(price, discountPercentage);
+	const stars = generateStarImagePaths(avgRating);
 
 	return (
 		<div className={styles.productCard}>
@@ -46,7 +33,9 @@ const ProductCard = ({
 					aria-label={`Rated ${avgRating.toFixed(1)} out of 5 stars`}
 				>
 					<div className={styles.productCard__stars} aria-hidden="true">
-						{calcStars()}
+						{stars.map((star, idx) => (
+							<img key={idx} src={star} alt="star" />
+						))}
 					</div>
 					<span className={styles.productCard__ratingText}>
 						{avgRating.toFixed(1)}/5

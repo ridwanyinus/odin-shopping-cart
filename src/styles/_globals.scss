@@ -1,5 +1,6 @@
 @use 'variables' as *;
 @use 'functions' as *;
+@use 'breakpoints' as *;
 
 html {
   overscroll-behavior: none;
@@ -37,3 +38,31 @@ button {
   }
   color: $black;
 }
+
+%button {
+  padding: 16px 54px;
+  text-align: center;
+  border: none;
+  border-radius: 62px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.37, 0, 0.63, 1);
+  @include media('>=tablet') {
+    font-size: rem(16);
+  }
+}
+
+.button--primary {
+  @extend %button;
+  background: $black;
+  color: $white;
+}
+
+.button--secondary {
+  @extend %button;
+  background: $gray;
+  color: $black;
+}
+
+// Todo: add active and focus style to button
