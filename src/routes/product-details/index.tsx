@@ -41,8 +41,6 @@ const ProductDetails = () => {
 		reviews: rating,
 		title,
 		description,
-		category,
-		thumbnail,
 	} = data ?? {};
 
 	const reviews = rating?.map((r) => r.rating) ?? [];
