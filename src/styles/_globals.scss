@@ -16,6 +16,13 @@ body {
   color: $black;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: $integral;
+}
+
 .container {
   width: min(100% - rem(24), rem(1240));
   margin-inline: auto;

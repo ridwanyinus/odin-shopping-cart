@@ -10,7 +10,7 @@
   border: 1px solid $gray;
   @extend %border-13;
   padding: 12px;
-  transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.2s cubic-bezier(0.37, 0, 0.63, 1);
 
   &:hover {
     box-shadow: 0 2px 8px rgba($black, 0.1);

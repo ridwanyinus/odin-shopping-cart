@@ -53,6 +53,12 @@ const ProductCard = ({
 					</span>
 				</div>
 				<div className={styles.productCard__prices}>
+					<span
+						className={styles.productCard__currentPrice}
+						aria-label={`Current price $${discountedPrice.toFixed(1)}`}
+					>
+						${discountedPrice.toFixed(1)}
+					</span>
 					{discountedPrice < price && (
 						<span
 							className={styles.productCard__originalPrice}
@@ -61,12 +67,6 @@ const ProductCard = ({
 							<s>${price}</s>
 						</span>
 					)}
-					<span
-						className={styles.productCard__currentPrice}
-						aria-label={`Current price $${discountedPrice.toFixed(1)}`}
-					>
-						${discountedPrice.toFixed(1)}
-					</span>
 					{discountedPrice < price && (
 						<small
 							className={styles.productCard__discount}
