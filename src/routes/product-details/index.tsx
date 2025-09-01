@@ -1,6 +1,7 @@
 import Breadcrumb from "@/components/BreadCumb/Breadcrumb";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import PageLoader from "@/components/ui/PageLoader/PageLoader";
+import { useCart } from "@/hooks/useCart";
 import { api } from "@/lib/api";
 import type { Product } from "@/types/product";
 import {
@@ -10,11 +11,14 @@ import {
 } from "@/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
+import { useCounter } from "@uidotdev/usehooks";
 import { useState } from "react";
 import styles from "./ProductDetails.module.scss";
 
 const ProductDetails = () => {
 	const [mainImage, setMainImage] = useState("");
+	const [showToast, setShowToast] = useState(false);
+	const [toastMessage, setToastMessage] = useState("");
 	const { id: productId } = useParams({ strict: false });
 
 	const parsedId = productId ? Number.parseInt(productId) : undefined;
@@ -24,6 +28,13 @@ const ProductDetails = () => {
 		queryFn: () => api.getProductById(parsedId as number),
 		staleTime: 1000 * 60 * 10, // cache for 10 minutes
 		enabled: Boolean(productId),
+	});
+
+	const { addToCart, cart } = useCart();
+
+	const [productQuantity, { increment, decrement }] = useCounter(1, {
+		min: 1,
+		max: 10,
 	});
 
 	if (data) console.log(data);
@@ -36,10 +47,12 @@ const ProductDetails = () => {
 	};
 
 	const {
+		id = 4,
+		thumbnail = "",
 		price = 0,
 		discountPercentage = 0,
 		reviews: rating,
-		title,
+		title = "",
 		description,
 	} = data ?? {};
 
@@ -51,6 +64,29 @@ const ProductDetails = () => {
 		discountPercentage ?? 0,
 	);
 	const stars = generateStarImagePaths(avgRating);
+
+	const handleAddToCart = () => {
+		const productExist = cart.find((item) => item.id === id);
+
+		if (productExist) {
+			setToastMessage(`⚠️ ${title} already in cart`);
+		} else {
+			setToastMessage(`✅ ${title} added to cart`);
+
+			addToCart({
+				id,
+				image: thumbnail,
+				name: title,
+				price,
+				quantity: productQuantity,
+				discountPercentage: discountPercentage,
+				discountedPrice: discountedPrice,
+			});
+		}
+
+		setShowToast(true);
+		setTimeout(() => setShowToast(false), 2000);
+	};
 
 	return (
 		<div className="container">
@@ -135,21 +171,31 @@ const ProductDetails = () => {
 						<div
 							className={`button--secondary ${styles.productDetails__counter}`}
 						>
-							<button type={"button"} className="plus">
+							<button type={"button"} className="plus" onClick={increment}>
 								+
 							</button>
-							<span>1</span>
-							<button type={"button"} className="minus">
+							<span>{productQuantity}</span>
+							<button
+								type={"button"}
+								disabled={productQuantity <= 1}
+								className="minus"
+								onClick={decrement}
+							>
 								-
 							</button>
 						</div>
 
 						<div className={styles.productDetails__addToCart}>
-							<button type="button" className="button--primary">
+							<button
+								type="button"
+								className="button--primary"
+								onClick={handleAddToCart}
+							>
 								Add to Cart
 							</button>
 						</div>
 					</div>
+					{showToast && <div className={styles.toast}>{toastMessage}</div>}
 				</section>
 			</main>
 		</div>

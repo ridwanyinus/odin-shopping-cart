@@ -1,3 +1,4 @@
+import { useCart } from "@/hooks/useCart";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import HamburgerIcon from "../ui/Hamburger/Hambuger";
@@ -6,8 +7,21 @@ import styles from "./Header.module.scss";
 
 export default function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [animate, setAnimate] = useState(false);
+
+	const { cart } = useCart();
+
+	const cartCount = cart.length;
 
 	const handleTogglemenu = () => setIsMenuOpen((prev) => !prev);
+
+	useEffect(() => {
+		if (cartCount > 0) {
+			setAnimate(true);
+			const timer = setTimeout(() => setAnimate(false), 200);
+			return () => clearTimeout(timer);
+		}
+	}, [cartCount]);
 
 	useEffect(() => {
 		if (isMenuOpen) document.body.style.overflow = "hidden";
@@ -83,9 +97,20 @@ export default function Header() {
 					>
 						<img src="/search-mobile.svg" alt="Search" role="presentation" />
 					</button>
-					<button type="button" aria-label="View cart">
+					<Link
+						to="/cart"
+						aria-label="View cart"
+						className={styles.header__cartButton}
+					>
 						<img src="/cart.svg" alt="Cart" role="presentation" />
-					</button>
+						{cart.length > 0 && (
+							<span
+								className={`${styles.header__cartCount} ${animate && styles.update}`}
+							>
+								{cart.length}
+							</span>
+						)}
+					</Link>
 					<button type="button" aria-label="View profile">
 						<img src="/profile.svg" alt="Profile" role="presentation" />
 					</button>

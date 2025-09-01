@@ -29,7 +29,7 @@ const Shop = () => {
 
 	return (
 		<main className={`${styles.shop} container`}>
-			<h2>New Arrivals</h2>
+			<h1>New Arrivals</h1>
 			<div className={styles.shop__grid}>
 				<ul>
 					{productCards.map((pc) => (

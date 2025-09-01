@@ -27,6 +27,7 @@
   &__title {
     font-weight: 700;
     margin-bottom: 8px;
+    font-family: $integral;
     @include media('>=tablet') {
       font-size: rem(24);
     }
@@ -146,10 +147,9 @@
     }
 
     button {
-      border: none;
-      background-color: transparent;
       font-size: rem(20);
       cursor: pointer;
+      font-weight: 500;
 
       @include media('>=tablet') {
         font-size: rem(24);
@@ -265,5 +265,39 @@
 
   .thumbnail img:hover {
     transform: scale(1.05);
+  }
+}
+
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  animation: slideUp 0.3s ease-out forwards, fadeOut 0.3s ease-in forwards 1.7s;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, 20px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translate(-50%, 20px);
   }
 }

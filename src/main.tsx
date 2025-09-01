@@ -9,15 +9,15 @@ import {
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
+import Header from "./components/Header/Header.tsx";
 import NotFound from "./components/ui/NotFound/NotFound.tsx";
 import { api } from "./lib/api.ts";
+import Cart from "./routes/cart/index.tsx";
 import ProductDetails from "./routes/product-details/index.tsx";
 import Shop from "./routes/shop/index.tsx";
 
-import Header from "./components/Header/Header.tsx";
-
 import * as TanStackQueryProvider from "./integrations/tanstack-query/root-provider.tsx";
-import type { MyRouterContext  } from "./integrations/tanstack-query/root-provider.tsx";
+import type { MyRouterContext } from "./integrations/tanstack-query/root-provider.tsx";
 
 import "./styles/index.scss";
 import reportWebVitals from "./reportWebVitals.ts";
@@ -53,6 +53,15 @@ const shopRoute = createRoute({
 	component: Shop,
 });
 
+const cartRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: "/cart",
+	beforeLoad: () => ({
+		getTitle: () => "Cart",
+	}),
+	component: Cart,
+});
+
 const productRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: "/shop/product/$id",
@@ -69,7 +78,12 @@ const productRoute = createRoute({
 	component: ProductDetails,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, shopRoute, productRoute]);
+const routeTree = rootRoute.addChildren([
+	indexRoute,
+	shopRoute,
+	cartRoute,
+	productRoute,
+]);
 
 const TanStackQueryProviderContext = TanStackQueryProvider.getContext();
 const router = createRouter({

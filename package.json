@@ -18,6 +18,7 @@
     "@tanstack/react-query-devtools": "^5.84.2",
     "@tanstack/react-router": "^1.130.2",
     "@tanstack/react-router-devtools": "^1.131.5",
+    "@uidotdev/usehooks": "^2.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
