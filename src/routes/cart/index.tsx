@@ -55,7 +55,10 @@ const Cart = () => {
 							<div className={styles.cart__itemDetails}>
 								<div className={styles.cart__header}>
 									<h2>
-										<Link to='/shop/product/$id' params={{ id: item.id.toString() }}>
+										<Link
+											to="/shop/product/$id"
+											params={{ id: item.id.toString() }}
+										>
 											{item.name}
 										</Link>
 									</h2>
@@ -119,7 +122,9 @@ const Cart = () => {
 					</div>
 					<div className={`${styles.cart__row} ${styles.total}`}>
 						<p>Total</p>
-						<span>${`${(Number(getDiscountTotal().toFixed(2)) + 10).toFixed(2)}`}</span>
+						<span>
+							${`${(Number(getDiscountTotal().toFixed(2)) + 10).toFixed(2)}`}
+						</span>
 					</div>
 
 					<div className={`${styles.cart__row} ${styles.coupon}`}>

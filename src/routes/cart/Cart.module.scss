@@ -172,7 +172,6 @@
 
   &__checkout {
     @extend %card;
-    // width: 100%;
 
     @include media('>=tablet') {
       gap: 16px;
@@ -228,10 +227,11 @@
   }
 
   .coupon {
+    gap: 12px;
+
     @include media('<=phone-sm') {
       flex-direction: column;
     }
-    gap: 12px;
 
     div {
       display: flex;
@@ -239,8 +239,7 @@
       align-items: center;
       cursor: default;
       overflow: hidden;
-        width: 100%;
-
+      width: 100%;
 
       @include media('>=phone-sm') {
         padding: 12px 16px !important;
@@ -253,6 +252,7 @@
         background-color: transparent;
       }
     }
+
     button {
       @include media('>=phone-sm') {
         width: 88px;
