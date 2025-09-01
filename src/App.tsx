@@ -1,14 +1,27 @@
 import { Link } from "@tanstack/react-router";
 import styles from "./App.module.scss";
-// import LinkButton from "./components/ui/Button/LinkButton"; //Todo: delete the component
+import calvinKlein from "./assets/calvin-klein.svg";
+import gucci from "./assets/gucci.svg";
+import prada from "./assets/prada.svg";
+import versace from "./assets/versace.svg";
+import zara from "./assets/zara.svg";
 
-const partnersImgUrl = [
-	"/versace.svg",
-	"/zara.svg",
-	"/gucci.svg",
-	"/prada.svg",
-	"calvin-klein.svg",
+const partnersImgUrl = [versace, gucci, prada, zara, calvinKlein];
+const stats = [
+	{
+		label: "200+",
+		description: "International Brands",
+	},
+	{
+		label: "2,000+",
+		description: "High-Quality Products",
+	},
+	{
+		label: "100%",
+		description: "Authentic Products",
+	},
 ];
+// Todo: split code into components
 
 const App = () => {
 	return (
@@ -23,7 +36,6 @@ const App = () => {
 						designed to bring out your individuality and cater to your sense of
 						style.
 					</span>
-					{/* <LinkButton text={"Shop Now"} url="/shop" /> */}
 					<Link
 						to="/shop"
 						className={`button--primary ${styles.hero__linkBtn}`}
@@ -31,18 +43,12 @@ const App = () => {
 						Shop Now
 					</Link>
 					<div className={styles.hero__statsWrapper}>
-						<div className={styles.hero__stats}>
-							<p>200+</p>
-							<span>International Brands</span>
-						</div>
-						<div className={styles.hero__stats}>
-							<p>2,000+</p>
-							<span>High-Quality Products</span>
-						</div>
-						<div className={styles.hero__stats}>
-							<p>30,000+</p>
-							<span>Happy Customers</span>
-						</div>
+						{stats.map((stat, idx) => (
+							<div key={idx} className={styles.hero__stats}>
+								<p>{stat.label}</p>
+								<span>{stat.description}</span>
+							</div>
+						))}
 					</div>
 				</div>
 				<div className={styles.hero__image}>

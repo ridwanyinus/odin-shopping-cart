@@ -97,6 +97,17 @@
       justify-content: flex-start;
       padding-block-start: 1rem;
     }
+
+    @include media('>=desktop') {
+      > *:not(:first-child) {
+        border-left: 1px solid rgba(0, 0, 0, 0.1);
+        padding-inline-start: 24px;
+      }
+      > * + * {
+        border-left: 1px solid rgba(0, 0, 0, 0.1);
+        padding-inline-start: 24px;
+      }
+    }
   }
 
   &__stats {

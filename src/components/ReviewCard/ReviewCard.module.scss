@@ -1,0 +1,67 @@
+.review {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 16px;
+
+  @include media('>=tablet') {
+    padding: 20px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-block-end: 8px;
+  }
+
+  &__stars {
+    display: flex;
+
+    img {
+      width: 19px;
+      height: auto;
+
+      @include media('>=tablet') {
+        width: 22px;
+      }
+    }
+  }
+
+  &__ellipsis {
+    position: relative;
+    bottom: 10px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  &__name {
+    font-weight: 700;
+    margin-block-end: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    @include media('>=tablet') {
+      font-size: rem(20);
+    }
+  }
+
+  &__comment {
+    font-size: rem(14);
+    color: $black-60;
+    @include media('>=tablet') {
+      font-size: rem(16);
+    }
+  }
+
+  &__date {
+    display: block;
+    margin-block-start: 1rem;
+    font-size: rem(14);
+    color: $black-60;
+    font-weight: 600;
+    @include media('>=tablet') {
+      font-size: rem(16);
+    }
+  }
+}

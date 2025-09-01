@@ -1,5 +1,6 @@
 import Breadcrumb from "@/components/BreadCumb/Breadcrumb";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
+import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import PageLoader from "@/components/ui/PageLoader/PageLoader";
 import { useCart } from "@/hooks/useCart";
 import { api } from "@/lib/api";
@@ -37,8 +38,6 @@ const ProductDetails = () => {
 		max: 10,
 	});
 
-	if (data) console.log(data);
-
 	if (error) return <ErrorMessage message={error.message} />;
 	if (isLoading) return <PageLoader />;
 
@@ -51,19 +50,20 @@ const ProductDetails = () => {
 		thumbnail = "",
 		price = 0,
 		discountPercentage = 0,
-		reviews: rating,
+		reviews,
 		title = "",
 		description,
 	} = data ?? {};
 
-	const reviews = rating?.map((r) => r.rating) ?? [];
+	const ratings = reviews?.map((r) => r.rating) ?? [];
 
-	const avgRating = calculateAverageRating(reviews);
+	const avgRating = calculateAverageRating(ratings);
+	const stars = generateStarImagePaths(avgRating);
+
 	const discountedPrice = calculateDiscountedPrice(
 		price ?? 0,
 		discountPercentage ?? 0,
 	);
-	const stars = generateStarImagePaths(avgRating);
 
 	const handleAddToCart = () => {
 		const productExist = cart.find((item) => item.id === id);
@@ -197,7 +197,20 @@ const ProductDetails = () => {
 					</div>
 					{showToast && <div className={styles.toast}>{toastMessage}</div>}
 				</section>
+
+
 			</main>
+<section className={styles.reviews}>
+					<h2 className={styles.reviews__title}>
+						All Reviews <span className={styles.reviews__count}>(451)</span>
+					</h2>
+
+					<div className={styles.reviews__cardContainer}>
+						{reviews?.map((review) => (
+							<ReviewCard key={review.reviewerEmail} {...review} />
+						))}
+					</div>
+				</section>
 		</div>
 	);
 };

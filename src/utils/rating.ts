@@ -1,6 +1,6 @@
-import emptyStar from "/codicon--star-empty.svg";
-import fullStar from "/codicon--star-full.svg";
-import halfStar from "/codicon--star-half.svg";
+import emptyStar from "@/assets/codicon--star-empty.svg";
+import fullStar from "@/assets/codicon--star-full.svg";
+import halfStar from "@/assets/codicon--star-half.svg";
 
 export const calculateAverageRating = (reviews: number[]): number => {
 	return reviews.length > 0

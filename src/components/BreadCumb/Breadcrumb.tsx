@@ -1,5 +1,5 @@
 import { Link, useMatches } from "@tanstack/react-router";
-import ArrowRight from "/arrow-right.svg";
+import ArrowRight from "@/assets/arrow-right.svg";
 import styles from "./Breadcrumb.module.scss";
 
 export default function BreadcrumbNav() {

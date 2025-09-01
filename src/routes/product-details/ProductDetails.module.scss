@@ -275,13 +275,18 @@
   transform: translateX(-50%);
   background: #333;
   color: #fff;
-  padding: 0.75rem 1.25rem;
   border-radius: 0.5rem;
-  font-size: 0.9rem;
+  font-size: rem(12);
   font-weight: 500;
+  padding: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   opacity: 0;
   animation: slideUp 0.3s ease-out forwards, fadeOut 0.3s ease-in forwards 1.7s;
+
+  @include media('>=tablet') {
+    font-size: rem(14);
+    padding: 0.75rem 1.25rem;
+  }
 }
 
 @keyframes slideUp {
@@ -299,5 +304,37 @@
   to {
     opacity: 0;
     transform: translate(-50%, 20px);
+  }
+}
+
+// reviews section
+.reviews {
+  &__title {
+    font-weight: 700;
+    font-size: rem(20);
+    margin-block-start: rem(24);
+    margin-block-end: rem(12);
+    @include media('>=tablet') {
+      font-size: rem(24);
+    }
+  }
+
+  &__count {
+    font-size: rem(14);
+    color: $black-60;
+
+    @include media('>=tablet') {
+      font-size: rem(16);
+    }
+  }
+
+  &__cardContainer {
+    display: grid;
+    gap: 16px;
+    margin-block-end: 1rem;
+
+    @include media('>=laptop') {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }

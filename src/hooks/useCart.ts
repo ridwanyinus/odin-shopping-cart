@@ -57,7 +57,7 @@ export const useCart = () => {
 	const getDiscountPercentage = () => {
 		const overallDiscountPercentage =
 			(getDiscountAmount() / getSubTotal()) * 100;
-		return overallDiscountPercentage.toFixed(2);
+		return overallDiscountPercentage.toFixed();
 	};
 
 	return {

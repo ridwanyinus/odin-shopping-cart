@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import HamburgerIcon from "../ui/Hamburger/Hambuger";
 // Todo: add accesibility styles (focus, active etc..) to all focusable elements
 import styles from "./Header.module.scss";
+import cartIcon from "@/assets/cart.svg"
+import profileIcon from "@/assets/profile.svg";
+import searchMobileIcon from "@/assets/search-mobile.svg";
+import searchIcon from "@/assets/search.svg";
 
 export default function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -80,7 +84,7 @@ export default function Header() {
 			<div className={styles.header__actions}>
 				<div className={styles.header__searchGroup}>
 					<button type="submit" aria-label="search">
-						<img src="/search.svg" alt="Search" role="presentation" />
+						<img src={searchIcon} alt="Search" role="presentation" />
 					</button>
 					<input
 						type="text"
@@ -95,14 +99,14 @@ export default function Header() {
 						className={styles.header__searchButtonMobile}
 						aria-label="Open search"
 					>
-						<img src="/search-mobile.svg" alt="Search" role="presentation" />
+						<img src={searchMobileIcon} alt="Search" role="presentation" />
 					</button>
 					<Link
 						to="/cart"
 						aria-label="View cart"
 						className={styles.header__cartButton}
 					>
-						<img src="/cart.svg" alt="Cart" role="presentation" />
+						<img src={cartIcon} alt="Cart" role="presentation" />
 						{cart.length > 0 && (
 							<span
 								className={`${styles.header__cartCount} ${animate && styles.update}`}
@@ -112,7 +116,7 @@ export default function Header() {
 						)}
 					</Link>
 					<button type="button" aria-label="View profile">
-						<img src="/profile.svg" alt="Profile" role="presentation" />
+						<img src={profileIcon} alt="Profile" role="presentation" />
 					</button>
 				</div>
 			</div>
