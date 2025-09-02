@@ -64,6 +64,10 @@
     width: 99px;
     height: auto;
 
+    @include media('<=tablet-sm') {
+      max-height: 99px;
+    }
+
     @include media('>=tablet') {
       width: 124px;
     }

@@ -39,6 +39,7 @@ const ProductDetails = () => {
 	});
 
 	if (error) return <ErrorMessage message={error.message} />;
+	//TODO: fix error page
 	if (isLoading) return <PageLoader />;
 
 	const handleChangeMainImage = (imgSrc: string) => {
@@ -197,20 +198,19 @@ const ProductDetails = () => {
 					</div>
 					{showToast && <div className={styles.toast}>{toastMessage}</div>}
 				</section>
-
-
 			</main>
-<section className={styles.reviews}>
-					<h2 className={styles.reviews__title}>
-						All Reviews <span className={styles.reviews__count}>(451)</span>
-					</h2>
+			<section className={styles.reviews}>
+				<h2 className={styles.reviews__title}>
+					All Reviews{" "}
+					<span className={styles.reviews__count}>({reviews?.length})</span>
+				</h2>
 
-					<div className={styles.reviews__cardContainer}>
-						{reviews?.map((review) => (
-							<ReviewCard key={review.reviewerEmail} {...review} />
-						))}
-					</div>
-				</section>
+				<div className={styles.reviews__cardContainer}>
+					{reviews?.map((review) => (
+						<ReviewCard key={review.reviewerEmail} {...review} />
+					))}
+				</div>
+			</section>
 		</div>
 	);
 };

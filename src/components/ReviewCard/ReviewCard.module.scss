@@ -32,7 +32,7 @@
     position: relative;
     bottom: 10px;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 700;
   }
   &__name {
     font-weight: 700;
@@ -59,7 +59,7 @@
     margin-block-start: 1rem;
     font-size: rem(14);
     color: $black-60;
-    font-weight: 600;
+    font-weight: 700;
     @include media('>=tablet') {
       font-size: rem(16);
     }
