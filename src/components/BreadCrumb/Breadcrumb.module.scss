@@ -6,9 +6,8 @@
   }
 
   &__list {
-    display: flex;
+    @include flex(row, center, flex-start);
     gap: 12px;
-    align-items: center;
     color: $black-60;
     font-size: rem(14);
     padding-block: 24px;
@@ -19,9 +18,7 @@
   }
 
   &__item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex(row, center, center);
     gap: 12px;
   }
 

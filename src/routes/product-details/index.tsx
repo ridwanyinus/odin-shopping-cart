@@ -1,4 +1,8 @@
-import Breadcrumb from "@/components/BreadCumb/Breadcrumb";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "@tanstack/react-router";
+import { useCounter } from "@uidotdev/usehooks";
+import { useState } from "react";
+import Breadcrumb from "@/components/BreadCrumb/Breadcrumb";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import PageLoader from "@/components/ui/PageLoader/PageLoader";
@@ -10,10 +14,6 @@ import {
 	calculateDiscountedPrice,
 	generateStarImagePaths,
 } from "@/utils";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "@tanstack/react-router";
-import { useCounter } from "@uidotdev/usehooks";
-import { useState } from "react";
 import styles from "./ProductDetails.module.scss";
 
 const ProductDetails = () => {
@@ -22,7 +22,7 @@ const ProductDetails = () => {
 	const [toastMessage, setToastMessage] = useState("");
 	const { id: productId } = useParams({ strict: false });
 
-	const parsedId = productId ? Number.parseInt(productId) : undefined;
+	const parsedId = productId ? Number.parseInt(productId, 10) : undefined;
 
 	const { data, error, isLoading } = useQuery<Product>({
 		queryKey: ["product", parsedId],
@@ -31,7 +31,7 @@ const ProductDetails = () => {
 		enabled: Boolean(productId),
 	});
 
-	const { addToCart, cart } = useCart();
+	const { addToCart, cart, updateQuantity } = useCart();
 
 	const [productQuantity, { increment, decrement }] = useCounter(1, {
 		min: 1,
@@ -71,6 +71,7 @@ const ProductDetails = () => {
 
 		if (productExist) {
 			setToastMessage(`⚠️ ${title} already in cart`);
+			updateQuantity(id, productQuantity);
 		} else {
 			setToastMessage(`✅ ${title} added to cart`);
 
@@ -96,19 +97,19 @@ const ProductDetails = () => {
 			<main className={styles.productDetails}>
 				<section className={styles.galleryGrid}>
 					<div className={styles.thumbnails__container}>
-						{data?.images.map((image, index) => (
+						{data?.images.map((imageUrl, index) => (
 							<button
 								type="button"
-								key={index}
+								key={imageUrl}
 								className={`${styles.thumbnail} ${styles[`thumbnail${index + 1}`]}`}
-								onClick={() => handleChangeMainImage(image)}
+								onClick={() => handleChangeMainImage(imageUrl)}
 								onKeyUp={(e) => {
 									if (e.key === "Enter" || e.key === " ") {
-										handleChangeMainImage(image);
+										handleChangeMainImage(imageUrl);
 									}
 								}}
 							>
-								<img src={image} alt="" />
+								<img src={imageUrl} alt="" />
 							</button>
 						))}
 					</div>

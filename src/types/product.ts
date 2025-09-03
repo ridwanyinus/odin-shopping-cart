@@ -1,7 +1,7 @@
 export interface Review {
 	rating: number;
 	comment: string;
-	date: string;
+	date: Date;
 	reviewerName: string;
 	reviewerEmail: string;
 }
@@ -17,6 +17,9 @@ export interface Product {
 	reviews: Review[];
 	images: string[];
 	thumbnail?: string;
+	onClick?: (productId: string) => void;
+	className?: string;
+	currency?: string;
 }
 
 export interface ProductCardProps {

@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { getId } from "@/utils";
 import styles from "./App.module.scss";
 import calvinKlein from "./assets/calvin-klein.svg";
 import gucci from "./assets/gucci.svg";
@@ -9,19 +10,21 @@ import zara from "./assets/zara.svg";
 const partnersImgUrl = [versace, gucci, prada, zara, calvinKlein];
 const stats = [
 	{
+		id: getId(),
 		label: "200+",
 		description: "International Brands",
 	},
 	{
+		id: getId(),
 		label: "2,000+",
 		description: "High-Quality Products",
 	},
 	{
+		id: getId(),
 		label: "100%",
 		description: "Authentic Products",
 	},
 ];
-// Todo: split code into components
 
 const App = () => {
 	return (
@@ -43,8 +46,8 @@ const App = () => {
 						Shop Now
 					</Link>
 					<div className={styles.hero__statsWrapper}>
-						{stats.map((stat, idx) => (
-							<div key={idx} className={styles.hero__stats}>
+						{stats.map((stat) => (
+							<div key={stat.id} className={styles.hero__stats}>
 								<p>{stat.label}</p>
 								<span>{stat.description}</span>
 							</div>

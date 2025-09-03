@@ -1,6 +1,6 @@
-@use 'variables' as *;
-@use 'functions' as *;
-@use 'breakpoints' as *;
+@use '../helpers/variables' as *;
+@use '../helpers/functions' as *;
+@use '../helpers/responsive' as *;
 
 html {
   overscroll-behavior: none;
@@ -22,21 +22,24 @@ h1 {
   font-family: $integral;
 }
 
-.container {
-  width: min(100% - rem(24), rem(1240));
-  margin-inline: auto;
-}
-
 a,
 button {
   border: none;
   background-color: transparent;
-  &:focus-within {
+  color: $black;
+
+  &:focus {
     outline: none;
-    border: none;
+  }
+
+  &:focus-visible {
     box-shadow: 0 0 0 0.25rem;
   }
-  color: $black;
+}
+
+.container {
+  width: min(100% - rem(24), rem(1240));
+  margin-inline: auto;
 }
 
 %button {
@@ -47,11 +50,21 @@ button {
   font-size: 14px;
   font-weight: 500;
   transition: all 0.3s cubic-bezier(0.37, 0, 0.63, 1);
+
   @include media('>=phone-sm') {
     padding: 16px 54px;
   }
+
   @include media('>=tablet') {
     font-size: rem(16);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px rgba($black, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }
 
@@ -64,6 +77,10 @@ button {
   justify-content: center;
   gap: 12px;
 
+  &:hover {
+    transform: translateY(-2px);
+  }
+
   &:active {
     transform: scale(0.9);
   }
@@ -74,5 +91,3 @@ button {
   background: $gray;
   color: $black;
 }
-
-// Todo: add active and focus style to button

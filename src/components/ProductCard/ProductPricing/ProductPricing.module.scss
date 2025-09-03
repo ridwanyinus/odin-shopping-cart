@@ -1,0 +1,39 @@
+.productPricing {
+  margin-top: auto;
+
+  &__prices {
+    @include flex(row, center, flex-start);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  &__originalPrice {
+    font-size: rem(20);
+    font-weight: 700;
+    color: $black-40;
+    @include media('>=tablet') {
+      font-size: rem(24);
+    }
+  }
+
+  &__currentPrice {
+    font-size: rem(20);
+    font-weight: 700;
+    @include media('>=tablet') {
+      font-size: rem(24);
+    }
+  }
+
+  &__discount {
+    color: $red;
+    font-size: rem(10);
+    background-color: #ff33331a;
+    border-radius: 62px;
+    padding: 6px;
+
+    @include media('>=tablet') {
+      padding: 4px 8px;
+      font-size: rem(12);
+    }
+  }
+}

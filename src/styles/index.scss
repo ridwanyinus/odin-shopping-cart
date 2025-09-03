@@ -1,7 +1,10 @@
-@use 'breakpoints';
-@use 'functions';
-@use 'reset';
-@use 'variables';
-@use 'globals';
-@use 'fonts';
-@use 'visibility';
+/**
+ * Global style entry file
+ */
+
+/* Global classes */
+@use './base/globals';
+@use './base/reset';
+
+/* Utility classes */
+@use './utilities/visibility';

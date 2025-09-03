@@ -1,7 +1,5 @@
 .errorPage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex(row, center, center);
   min-height: 100vh;
   width: 100%;
   padding: 2rem;
@@ -44,9 +42,8 @@
 }
 
 .buttonGroup {
-  display: flex;
+  @include flex(row, stretch, center);
   gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
 }
 

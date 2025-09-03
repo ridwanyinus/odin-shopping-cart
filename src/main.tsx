@@ -1,28 +1,27 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
-	Outlet,
-	RouterProvider,
 	createRootRouteWithContext,
 	createRoute,
 	createRouter,
+	Outlet,
+	RouterProvider,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header/Header.tsx";
 import NotFound from "./components/ui/NotFound/NotFound.tsx";
+import type { MyRouterContext } from "./integrations/tanstack-query/root-provider.tsx";
+import * as TanStackQueryProvider from "./integrations/tanstack-query/root-provider.tsx";
 import { api } from "./lib/api.ts";
 import Cart from "./routes/cart/index.tsx";
 import ProductDetails from "./routes/product-details/index.tsx";
 import Shop from "./routes/shop/index.tsx";
 
-import * as TanStackQueryProvider from "./integrations/tanstack-query/root-provider.tsx";
-import type { MyRouterContext } from "./integrations/tanstack-query/root-provider.tsx";
-
 import "./styles/index.scss";
-import reportWebVitals from "./reportWebVitals.ts";
 
 import App from "./App.tsx";
+import reportWebVitals from "./reportWebVitals.ts";
 
 const rootRoute = createRootRouteWithContext<MyRouterContext>()({
 	component: () => {
@@ -66,11 +65,11 @@ const productRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: "/shop/product/$id",
 	loader: async ({ params }) => {
-		const product = await api.getProductById(Number.parseInt(params.id));
+		const product = await api.getProductById(Number.parseInt(params.id, 10));
 		return { product };
 	},
 	beforeLoad: async ({ params }) => {
-		const product = await api.getProductById(Number.parseInt(params.id));
+		const product = await api.getProductById(Number.parseInt(params.id, 10));
 		return {
 			getTitle: () => product.title,
 		};

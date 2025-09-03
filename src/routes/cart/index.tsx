@@ -1,9 +1,9 @@
+import { Link } from "@tanstack/react-router";
 import arrowRight from "@/assets/arrow.svg";
 import tag from "@/assets/tag.svg";
 import trash from "@/assets/trash.svg";
-import BreadCrumb from "@/components/BreadCumb/Breadcrumb";
+import BreadCrumb from "@/components/BreadCrumb/Breadcrumb";
 import { useCart } from "@/hooks/useCart";
-import { Link } from "@tanstack/react-router";
 import styles from "./Cart.module.scss";
 
 const Cart = () => {

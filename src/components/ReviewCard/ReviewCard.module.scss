@@ -8,9 +8,7 @@
   }
 
   &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex(row, center, space-between);
     gap: 8px;
     margin-block-end: 8px;
   }

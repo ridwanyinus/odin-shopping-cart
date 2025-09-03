@@ -1,0 +1,57 @@
+.cartButton {
+  position: relative;
+
+  &__badge {
+    position: absolute;
+    top: -12px;
+    left: 10px;
+    background: red;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 50%;
+    height: 22px;
+    width: 22px;
+    @include flex(row, center, center);
+    transition: transform 0.2s ease(in-out-quart);
+
+    &.badge--animating {
+      transform: scale(1.2);
+      -webkit-animation-name: cd-qty-enter;
+      animation-name: cd-qty-enter;
+    }
+
+    @include media('>=tablet') {
+      top: -16px;
+    }
+  }
+}
+
+@-webkit-keyframes cd-qty-enter {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+@keyframes cd-qty-enter {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+  }
+}

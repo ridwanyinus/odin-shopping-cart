@@ -1,59 +1,78 @@
-import { useCart } from "@/hooks/useCart";
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import HamburgerIcon from "../ui/Hamburger/Hambuger";
-// Todo: add accesibility styles (focus, active etc..) to all focusable elements
-import styles from "./Header.module.scss";
-import cartIcon from "@/assets/cart.svg"
+import { useEffect, useId, useState } from "react";
 import profileIcon from "@/assets/profile.svg";
 import searchMobileIcon from "@/assets/search-mobile.svg";
-import searchIcon from "@/assets/search.svg";
+import { useCart } from "@/hooks/useCart";
+import HamburgerIcon from "../ui/Hamburger/Hambuger";
+import CartButton from "./CartButton/CartButton";
+import styles from "./Header.module.scss";
+import MobileNavigation from "./MobileNavigation/MobileNavigation";
+import SearchForm from "./SearchForm/SearchForm";
+
+const CART_ANIMATION_DURATION = 200;
 
 export default function Header() {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [animate, setAnimate] = useState(false);
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const [isCartAnimating, setIsCartAnimating] = useState(false);
 
 	const { cart } = useCart();
 
-	const cartCount = cart.length;
+	const cartItemsCount = cart.length;
 
-	const handleTogglemenu = () => setIsMenuOpen((prev) => !prev);
+	const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
 
+	const mobileNavId = useId();
+
+	// IsCartAnimating  cart count when items are added
 	useEffect(() => {
-		if (cartCount > 0) {
-			setAnimate(true);
-			const timer = setTimeout(() => setAnimate(false), 200);
+		if (cartItemsCount > 0) {
+			setIsCartAnimating(true);
+			const timer = setTimeout(
+				() => setIsCartAnimating(false),
+				CART_ANIMATION_DURATION,
+			);
 			return () => clearTimeout(timer);
 		}
-	}, [cartCount]);
+	}, [cartItemsCount]);
 
+	// Prevents body scroll  when mobile menu is open
 	useEffect(() => {
-		if (isMenuOpen) document.body.style.overflow = "hidden";
+		if (isMobileMenuOpen) document.body.style.overflow = "hidden";
 
 		return () => {
 			document.body.style.overflow = "unset";
 		};
-	}, [isMenuOpen]);
+	}, [isMobileMenuOpen]);
 
 	return (
 		<header className={`${styles.header} container`}>
+			{/* Mobile Menu Toggle */}
 			<button
 				type="button"
-				onClick={handleTogglemenu}
-				aria-expanded={isMenuOpen}
-				aria-controls="mobile-nav"
-				className={styles.header__menuButton}
+				onClick={toggleMobileMenu}
+				aria-expanded={isMobileMenuOpen}
+				aria-controls={mobileNavId}
+				className={styles.header__mobileMenuToggle}
 			>
-				<HamburgerIcon isOpen={isMenuOpen} />
+				<HamburgerIcon isOpen={isMobileMenuOpen} />
 			</button>
-			<div className={styles.header__logoWrapper}>
-				<Link to="/" className={styles.header__logo}>
+
+			{/* Logo */}
+			<div className={styles.header__logoContainer}>
+				<Link
+					to="/"
+					className={styles.header__logo}
+					aria-label="SHOP.CO - Go to homepage"
+				>
 					SHOP.CO
 				</Link>
 			</div>
 
-			{/* Laptop Nav */}
-			<nav className={styles.header__nav} aria-label="Desktop navigation">
+			{/* Desktop Navigation */}
+			<nav
+				className={styles.header__desktopNav}
+				aria-label="Desktop navigation"
+			>
 				<ul>
 					<li>
 						<Link to="/shop">Shop</Link>
@@ -62,38 +81,20 @@ export default function Header() {
 				</ul>
 			</nav>
 
-			{/* Mobile Nav */}
-			{isMenuOpen && (
-				<div className={styles.header__navMobileWrapper}>
-					<nav
-						id="mobile-nav"
-						className={styles.header__navMobile}
-						aria-label="Mobile navigation"
-						aria-hidden={!isMenuOpen}
-					>
-						<ul>
-							<li>
-								<Link to="/shop">Shop</Link>
-								<Link to=".">Categories</Link>
-							</li>
-						</ul>
-					</nav>
-				</div>
-			)}
+			{/* Mobile Navigation */}
+			<MobileNavigation
+				isOpen={isMobileMenuOpen}
+				navId={mobileNavId}
+				onClose={() => setIsMobileMenuOpen(false)}
+			/>
 
-			<div className={styles.header__actions}>
-				<div className={styles.header__searchGroup}>
-					<button type="submit" aria-label="search">
-						<img src={searchIcon} alt="Search" role="presentation" />
-					</button>
-					<input
-						type="text"
-						placeholder="Search for products..."
-						aria-label="Search for products"
-					/>
+			<div className={styles.header__actionsContainer}>
+				<div className={styles.header__searchDesktop}>
+					<SearchForm variant="desktop" />
 				</div>
 
-				<div className={styles.header__actionsGroup}>
+				<div className={styles.header__buttonsGroup}>
+					{/* Mobile Search Button */}
 					<button
 						type="button"
 						className={styles.header__searchButtonMobile}
@@ -101,20 +102,15 @@ export default function Header() {
 					>
 						<img src={searchMobileIcon} alt="Search" role="presentation" />
 					</button>
-					<Link
-						to="/cart"
-						aria-label="View cart"
+
+					{/* Cart Button */}
+					<CartButton
+						itemCount={cartItemsCount}
+						isAnimating={isCartAnimating}
 						className={styles.header__cartButton}
-					>
-						<img src={cartIcon} alt="Cart" role="presentation" />
-						{cart.length > 0 && (
-							<span
-								className={`${styles.header__cartCount} ${animate && styles.update}`}
-							>
-								{cart.length}
-							</span>
-						)}
-					</Link>
+					/>
+
+					{/* Profile Button */}
 					<button type="button" aria-label="View profile">
 						<img src={profileIcon} alt="Profile" role="presentation" />
 					</button>

@@ -1,21 +1,28 @@
 .shop {
+  padding-block-start: 12px;
   h1 {
     text-align: center;
-    margin-block: 1rem;
+    margin-block: 16px;
   }
   &__grid {
     ul {
       display: grid;
+      justify-content: space-between;
       grid-template-columns: repeat(auto-fit, minmax(rem(200), 1fr));
       gap: 32px;
     }
 
     li {
-      display: flex;
-      justify-content: center;
+      @include flex(row, stretch, center);
     }
 
     a {
+      transition: all 0.2s ease(in-out-cubic);
+
+      &:hover img {
+        transform: scale(1.02);
+      }
+
       &:focus-within img {
         transform: scale(1.02);
       }

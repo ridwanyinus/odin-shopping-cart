@@ -1,3 +1,13 @@
-@forward 'variables';
-@forward 'breakpoints';
-@forward 'functions';
+/**
+ * Files to import
+ */
+
+/* Helpers */
+
+@forward './helpers/easing';
+@forward './helpers/fonts';
+@forward './helpers/functions';
+@forward './helpers/grid';
+@forward './helpers/mixins';
+@forward './helpers/responsive';
+@forward './helpers/variables';

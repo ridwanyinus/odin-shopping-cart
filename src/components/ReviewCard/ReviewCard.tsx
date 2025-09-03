@@ -24,8 +24,8 @@ const Review = ({ rating, comment, reviewerName, date }: ReveiewProps) => {
 		<div className={styles.review}>
 			<div className={styles.review__header}>
 				<span className={styles.review__stars}>
-					{stars.map((star, idx) => (
-						<img key={idx} src={star} alt="stars" />
+					{stars.map((star, i) => (
+						<img key={i} src={star} alt="stars" />
 					))}
 				</span>
 				<button type="button" className={styles.review__ellipsis}>

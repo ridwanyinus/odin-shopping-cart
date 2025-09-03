@@ -1,4 +1,5 @@
 const BASE_URL = "https://dummyjson.com/products";
+
 import type { Product } from "@/types/product";
 
 // Fetch products by category

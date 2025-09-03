@@ -1,6 +1,5 @@
 .errorMessage {
-  display: flex;
-  align-items: center;
+  @include flex(row, center, flex-start);
   min-height: 100vh;
 }
 
@@ -52,9 +51,8 @@
 }
 
 .buttonGroup {
-  display: flex;
+  @include flex(row, stretch, center);
   gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
 }
 

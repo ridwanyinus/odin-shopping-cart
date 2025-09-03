@@ -1,7 +1,5 @@
 .pageLoader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex(row, center, center);
   height: 100vh;
 }
 

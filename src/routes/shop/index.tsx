@@ -1,10 +1,9 @@
-import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
-import PageLoader from "@/components/ui/PageLoader/PageLoader";
-import ProductCard from "@/components/ui/ProductCard/ProductCard";
-import type { Product, ProductCardProps } from "@/types/product";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "@tanstack/react-router";
-import { Outlet } from "@tanstack/react-router";
+import { Link, Outlet } from "@tanstack/react-router";
+import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
+import ProductCard from "@/components/ProductCard/ProductCard";
+import PageLoader from "@/components/ui/PageLoader/PageLoader";
+import type { Product, ProductCardProps } from "@/types/product";
 import { api } from "../../lib/api";
 import styles from "./Shop.module.scss";
 
@@ -17,8 +16,10 @@ const Shop = () => {
 	if (error) return <ErrorMessage message={error.message} />;
 	if (isLoading) return <PageLoader />;
 
+	const shuffledProducts = data?.sort(() => Math.random() - 0.5);
+
 	const productCards: ProductCardProps[] =
-		data?.map((p) => ({
+		shuffledProducts?.map((p) => ({
 			imgUrl: p.thumbnail || p.images[0],
 			title: p.title,
 			price: p.price,
