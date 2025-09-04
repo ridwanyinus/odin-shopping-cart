@@ -24,7 +24,7 @@ export default function CartButton({
 			aria-label={ariaLabel}
 			className={`${styles.cartButton} ${className || ""}`}
 		>
-			<img src={cartIcon} alt=""  width="24" height="24" />
+			<img src={cartIcon} alt="" width="24" height="24" />
 			{hasItems && (
 				<span
 					className={`${styles.cartButton__badge} ${

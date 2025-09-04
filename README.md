@@ -14,7 +14,7 @@ A modern e-commerce shopping cart application built with React 19 and TypeScript
 ## Tech Stack
 
 - **Frontend**: React 19 with TypeScript
-- **Routing**: TanStack Router with file-based routing
+- **Routing**: TanStack Router 
 - **State Management**: TanStack Query for server state
 - **Styling**: SCSS modules
 - **Build Tool**: Vite
