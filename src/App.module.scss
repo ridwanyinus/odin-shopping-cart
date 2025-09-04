@@ -5,13 +5,8 @@
   position: relative;
   padding-block-start: 12px;
 
-  @include media('>=tablet') {
-    max-height: 994px;
-  }
-
   @include media('>=laptop') {
     margin-block-start: 2rem;
-    max-height: 685px;
   }
 
   &__container {
@@ -194,6 +189,7 @@
 
   &__partners {
     @include flex(row, stretch, space-evenly);
+    gap: 8px;
 
     flex-wrap: wrap;
 
