@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
 import { useCounter } from "@uidotdev/usehooks";
 import { useState } from "react";
-import Breadcrumb from "@/components/BreadCrumb/Breadcrumb";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
+import Breadcrumb from "@/components/ui/BreadCrumb/Breadcrumb";
 import PageLoader from "@/components/ui/PageLoader/PageLoader";
 import { useCart } from "@/hooks/useCart";
 import { api } from "@/lib/api";
@@ -15,6 +15,8 @@ import {
 	generateStarImagePaths,
 } from "@/utils";
 import styles from "./ProductDetails.module.scss";
+
+// TODO: split code to different components and seperate logic
 
 const ProductDetails = () => {
 	const [mainImage, setMainImage] = useState("");
@@ -39,7 +41,6 @@ const ProductDetails = () => {
 	});
 
 	if (error) return <ErrorMessage message={error.message} />;
-	//TODO: fix error page
 	if (isLoading) return <PageLoader />;
 
 	const handleChangeMainImage = (imgSrc: string) => {
@@ -143,25 +144,22 @@ const ProductDetails = () => {
 							</span>
 						</div>
 						<div className={styles.productDetails__prices}>
-							<span
-								className={styles.productDetails__currentPrice}
-								aria-label={`Current price $${discountedPrice.toFixed(1)}`}
-							>
+							<span className={styles.productDetails__currentPrice}>
+								<span className="sr-only">
+									{`Current price $${discountedPrice.toFixed(1)}`}
+								</span>
 								${discountedPrice.toFixed(1)}
 							</span>
 							{discountedPrice < price && (
-								<span
-									className={styles.productDetails__originalPrice}
-									aria-label={`Original price $${price}`}
-								>
+								<span className={styles.productDetails__originalPrice}>
+									<span className="sr-only">{`Original price $${price}`}</span>$
+									{discountedPrice.toFixed(1)}
 									<s>${price}</s>
 								</span>
 							)}
 							{discountedPrice < price && (
-								<small
-									className={styles.productDetails__discount}
-									aria-label={`${discountPercentage.toFixed()}% discount`}
-								>
+								<small className={styles.productDetails__discount}>
+									<span className="sr-only">{`${discountPercentage.toFixed()}% discount`}</span>
 									-{discountPercentage.toFixed()}%
 								</small>
 							)}

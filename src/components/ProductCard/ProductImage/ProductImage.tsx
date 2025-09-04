@@ -24,10 +24,9 @@ const ProductImage = ({ src, alt, className }: ProductImageProps) => {
 	return (
 		<div className={`${styles.productImage} ${className || ""}`}>
 			{isImageLoading && (
-				<div
-					className={styles.productImage__skeleton}
-					aria-label="Loading product image"
-				/>
+				<div className={styles.productImage__skeleton}>
+					<span className="sr-only">Loading product image</span>
+				</div>
 			)}
 
 			{hasImageError ? (

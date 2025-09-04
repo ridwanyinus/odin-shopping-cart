@@ -7,6 +7,8 @@ import type { Product, ProductCardProps } from "@/types/product";
 import { api } from "../../lib/api";
 import styles from "./Shop.module.scss";
 
+// TODO: split code to different components and seperate logic
+
 const Shop = () => {
 	const { data, error, isLoading } = useQuery<Product[]>({
 		queryKey: ["products"],

@@ -4,6 +4,7 @@
 
 .productCard {
   @include flex(column, stretch, flex-start);
+  width: 100%;
   height: 100%;
   border: 1px solid $gray;
   @extend %border-13;
@@ -26,7 +27,7 @@
   &__title {
     font-weight: 700;
     margin-bottom: 8px;
-    font-size: rem(16);
+    font-size: rem(18);
     @include media('>=tablet') {
       font-size: rem(20);
     }

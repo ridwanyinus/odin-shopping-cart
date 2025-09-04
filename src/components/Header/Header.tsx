@@ -23,7 +23,6 @@ export default function Header() {
 
 	const mobileNavId = useId();
 
-	// IsCartAnimating  cart count when items are added
 	useEffect(() => {
 		if (cartItemsCount > 0) {
 			setIsCartAnimating(true);
@@ -35,7 +34,7 @@ export default function Header() {
 		}
 	}, [cartItemsCount]);
 
-	// Prevents body scroll  when mobile menu is open
+	// Prevents body scroll when mobile menu is open
 	useEffect(() => {
 		if (isMobileMenuOpen) document.body.style.overflow = "hidden";
 

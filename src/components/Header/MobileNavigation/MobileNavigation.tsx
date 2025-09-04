@@ -8,7 +8,11 @@ interface MobileNavigationProps {
 	onClose: () => void;
 }
 
-export default function MobileNavigation({ isOpen, navId, onClose }: MobileNavigationProps) {
+export default function MobileNavigation({
+	isOpen,
+	navId,
+	onClose,
+}: MobileNavigationProps) {
 	const firstLinkRef = useRef<HTMLAnchorElement>(null);
 
 	// Focus management for accessibility
@@ -40,7 +44,6 @@ export default function MobileNavigation({ isOpen, navId, onClose }: MobileNavig
 				id={navId}
 				className={styles.mobileNav}
 				aria-label="Mobile navigation"
-
 			>
 				<ul className={styles.mobileNav__list}>
 					<li className={styles.mobileNav__item}>
@@ -54,11 +57,7 @@ export default function MobileNavigation({ isOpen, navId, onClose }: MobileNavig
 						</Link>
 					</li>
 					<li className={styles.mobileNav__item}>
-						<Link
-							to="."
-							className={styles.mobileNav__link}
-							onClick={onClose}
-						>
+						<Link to="." className={styles.mobileNav__link} onClick={onClose}>
 							Categories
 						</Link>
 					</li>

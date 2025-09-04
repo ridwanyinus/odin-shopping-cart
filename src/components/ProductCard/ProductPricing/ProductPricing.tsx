@@ -25,26 +25,23 @@ const ProductPricing = ({
 	return (
 		<div className={`${styles.productPricing} ${className || ""}`}>
 			<div className={styles.productPricing__prices}>
-				<span
-					className={styles.productPricing__currentPrice}
-					aria-label={`Current price: ${formattedCurrentPrice}`}
-				>
+				<span className={styles.productPricing__currentPrice}>
+					<span className="sr-only">
+						Current price: ${formattedCurrentPrice}
+					</span>
 					{formattedCurrentPrice}
 				</span>
 
 				{hasDiscount && (
 					<>
-						<span
-							className={styles.productPricing__originalPrice}
-							aria-label={`Original price: ${formattedOriginalPrice}`}
-						>
+						<span className={styles.productPricing__originalPrice}>
+							<span className="sr-only">
+								Original price: ${formattedOriginalPrice}
+							</span>
 							<s>{formattedOriginalPrice}</s>
 						</span>
 
-						<span
-							className={styles.productPricing__discount}
-							aria-label={`${roundedDiscountPercentage}% discount`}
-						>
+						<span className={styles.productPricing__discount}>
 							-{roundedDiscountPercentage}%
 						</span>
 					</>

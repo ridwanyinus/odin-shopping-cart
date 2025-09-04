@@ -27,11 +27,16 @@
   }
 
   &__ellipsis {
-    position: relative;
-    bottom: 10px;
     cursor: pointer;
     font-weight: 700;
+    padding: 4px 8px;
+    border: none;
+    background: transparent;
+    border-radius: 4px;
+    font-size: 1.2em;
+    transform: translateY(-6px);
   }
+
   &__name {
     font-weight: 700;
     margin-block-end: 4px;
@@ -42,11 +47,23 @@
     @include media('>=tablet') {
       font-size: rem(20);
     }
+
+    img {
+      width: 16px;
+      height: 16px;
+
+      @include media('>=tablet') {
+        width: 18px;
+        height: 18px;
+      }
+    }
   }
 
   &__comment {
     font-size: rem(14);
     color: $black-60;
+    line-height: 1.5;
+
     @include media('>=tablet') {
       font-size: rem(16);
     }
@@ -58,6 +75,7 @@
     font-size: rem(14);
     color: $black-60;
     font-weight: 700;
+
     @include media('>=tablet') {
       font-size: rem(16);
     }

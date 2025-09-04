@@ -7,8 +7,6 @@ interface SearchFormProps {
 	variant: "desktop" | "mobile";
 	onSubmit?: (searchTerm: string) => void;
 }
-// <Record, string>
-// <HTMLFormElement></HTMLFormElement>
 const SearchForm = ({ className, variant, onSubmit }: SearchFormProps) => {
 	const [searchTerm, setSearchTerm] = useState("");
 

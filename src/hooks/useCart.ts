@@ -44,8 +44,6 @@ export const useCart = () => {
 		);
 	};
 
-	const clearCart = () => {};
-
 	const getDiscountTotal = () =>
 		cart?.reduce((acc, curr) => acc + curr.discountedPrice * curr.quantity, 0);
 
@@ -65,7 +63,6 @@ export const useCart = () => {
 		addToCart,
 		removeFromCart,
 		updateQuantity,
-		clearCart,
 		getDiscountPercentage,
 		getSubTotal,
 		getDiscountTotal,

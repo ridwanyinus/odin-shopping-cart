@@ -3,13 +3,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 export interface MyRouterContext {
 	queryClient: QueryClient;
 	getTitle: () => string;
+	getBreadcrumb: () => string;
 }
 
 export function getContext(): MyRouterContext {
 	const queryClient = new QueryClient();
 	return {
 		queryClient,
-		getTitle: () => "Home",
+		getTitle: () => "Shop.co",
+		getBreadcrumb: () => "Home",
 	};
 }
 

@@ -11,12 +11,13 @@ const ProductRating = ({
 	rating,
 	reviewCount,
 	starPaths,
-	className
+	className,
 }: ProductRatingProps) => {
 	const formattedRating = rating.toFixed(1);
-	const ratingText = reviewCount > 0
-		? `${formattedRating} out of 5 stars based on ${reviewCount} reviews`
-		: `${formattedRating} out of 5 stars`;
+	const ratingText =
+		reviewCount > 0
+			? `${formattedRating} out of 5 stars based on ${reviewCount} reviews`
+			: `${formattedRating} out of 5 stars`;
 
 	return (
 		<div className={`${styles.productRating} ${className || ""}`}>
@@ -30,7 +31,6 @@ const ProductRating = ({
 						key={`star-${index}`}
 						src={starPath}
 						alt=""
-						role="presentation"
 						className={styles.productRating__star}
 						width="16"
 						height="16"
@@ -39,10 +39,8 @@ const ProductRating = ({
 			</div>
 
 			<div className={styles.productRating__info}>
-				<span
-					className={styles.productRating__score}
-					aria-label={`Rating: ${formattedRating} out of 5`}
-				>
+				<span className={styles.productRating__score}>
+					<span className="sr-only">Rating: {formattedRating} out of 5 </span>
 					{formattedRating}/5
 				</span>
 			</div>

@@ -13,7 +13,7 @@ export default function BreadcrumbNav() {
 		.filter((match) => match.context.getTitle)
 		.map(({ pathname, context }) => {
 			return {
-				title: context.getTitle(),
+				title: context.getBreadcrumb(),
 				path: pathname,
 			};
 		});
@@ -38,7 +38,7 @@ export default function BreadcrumbNav() {
 							>
 								{crumb.title}
 							</Link>
-							{!isLastItem && <img src={ArrowRight} alt="" />}
+							{!isLastItem && <img src={ArrowRight} alt="arrow right" />}
 						</li>
 					);
 				})}

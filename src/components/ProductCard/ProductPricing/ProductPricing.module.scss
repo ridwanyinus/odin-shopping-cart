@@ -4,24 +4,19 @@
   &__prices {
     @include flex(row, center, flex-start);
     flex-wrap: wrap;
-    gap: 12px;
   }
 
   &__originalPrice {
     font-size: rem(20);
     font-weight: 700;
     color: $black-40;
-    @include media('>=tablet') {
-      font-size: rem(24);
-    }
+    margin-inline-start: 8px;
+    margin-inline-end: 4px;
   }
 
   &__currentPrice {
     font-size: rem(20);
     font-weight: 700;
-    @include media('>=tablet') {
-      font-size: rem(24);
-    }
   }
 
   &__discount {
@@ -33,7 +28,7 @@
 
     @include media('>=tablet') {
       padding: 4px 8px;
-      font-size: rem(12);
+      font-size: rem(10);
     }
   }
 }

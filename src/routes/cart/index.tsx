@@ -2,9 +2,11 @@ import { Link } from "@tanstack/react-router";
 import arrowRight from "@/assets/arrow.svg";
 import tag from "@/assets/tag.svg";
 import trash from "@/assets/trash.svg";
-import BreadCrumb from "@/components/BreadCrumb/Breadcrumb";
+import BreadCrumb from "@/components/ui/BreadCrumb/Breadcrumb";
 import { useCart } from "@/hooks/useCart";
 import styles from "./Cart.module.scss";
+
+// TODO: split code to different components and seperate logic
 
 const Cart = () => {
 	const {
@@ -24,8 +26,6 @@ const Cart = () => {
 		updateQuantity(id, currentValue - 1);
 	};
 
-	const handleRemoveFromCart = (id: number) => removeFromCart(id);
-
 	if (cart?.length <= 0)
 		return (
 			<div className={`container ${styles.emptyCart}`}>
@@ -36,6 +36,8 @@ const Cart = () => {
 				</p>
 			</div>
 		);
+
+	const handleRemoveFromCart = (id: number) => removeFromCart(id);
 
 	return (
 		<main className={`container ${styles.cart}`}>
